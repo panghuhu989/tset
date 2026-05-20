@@ -1,0 +1,126 @@
+{
+  "nanobotApiBase": "http://127.0.0.1:8910",
+  "nanobotAlertPath": "/guardian/alert",
+  "sessionId": "computer-guardian-relay",
+  "intervalSeconds": 5,
+  "cooldownSeconds": 180,
+  "consecutiveHits": 1,
+  "notify": {
+    "channel": "feishu",
+    "chatId": "oc_00623de6cc75939fbfb249bb46bab781"
+  },
+  "feishu": {
+    "appId": "cli_a949e6a76bba5cc5",
+    "appSecret": "9HGtCmlFbeqlMTF2aM0XFbeOZ0Hqas4N"
+  },
+  "hardwareDiagnostics": {
+  "enabled": true,
+  "alertWhenUnavailable": false,
+  "windowsUseHardwareMonitor": true,
+  "windowsUseAcpiThermalZone": true,
+  "windowsUseNvidiaSmiFan": true,
+
+  "useLibreHardwareMonitorWebApi": true,
+  "libreHardwareMonitorHost": "127.0.0.1",
+  "libreHardwareMonitorPort": 8085,
+  "libreHardwareMonitorTimeoutSeconds": 3,
+
+  "cpuTemperatureWarnCelsius": 70,
+  "cpuTemperatureCriticalCelsius": 90,
+
+  "fanMinRpm": 800,
+  "fanStoppedRpm": 100,
+  "fanMinPercent": 20,
+  "fanAlertWhenCpuHotOnly": false
+},
+  "thresholds": {
+    "cpu": 95,
+    "memory": 90,
+    "disk": 50,
+    "gpu": 90,
+    "network": 1000,
+    "cpu_temperature": 85,
+    "fan_speed": 800,
+    "voltage": 1
+  },
+  "network": {
+  "enabled": true,
+  "testUrls": [
+    "https://www.feishu.cn",
+    "https://www.baidu.com"
+  ],
+  "timeoutSeconds": 3,
+  "maxLatencyMs": 1
+},
+  "workspaceDir": "~/.nanobot/workspace/guardian",
+  "diskTarget": "",
+  
+  "strategy": {
+    "allowTerminate": false,
+    "cpuTopN": 2,
+    "memoryTopN": 1,
+    "hardwareTopN": 3,
+    "cpuNice": 10,
+    "windowsPriority": "below_normal",
+    "setBalancedPowerPlanOnHardwareAlert": false,
+    "diskTempPaths": [],
+    "processWhitelist": [
+      "systemd",
+      "python",
+      "python3",
+      "nanobot",
+      "code",
+      "explorer.exe",
+      "finder",
+      "windowserver"
+    ]
+  },
+  "hardware": {
+    "enabled": true,
+    "alertWhenUnavailable": false,
+
+    "windowsUseHardwareMonitor": true,
+    "windowsUseAcpiThermalZone": true,
+    "windowsUseNvidiaSmiFan": true,
+
+    "cpuTemperatureWarnCelsius": 85,
+    "cpuTemperatureCriticalCelsius": 95,
+
+    "fanMinRpm": 800,
+    "fanStoppedRpm": 100,
+    "fanMinPercent": 20,
+    "fanAlertWhenCpuHotOnly": true,
+    "fanCpuHotCelsius": 75,
+
+    "voltageRules": [
+        {
+            "name": "CPU VCore",
+            "include": ["vcore", "cpu core", "cpu vcore", "core voltage"],
+            "min": 0.60,
+            "max": 1.60
+        },
+        {
+            "name": "+12V",
+            "include": ["+12v", "12v"],
+            "min": 11.40,
+            "max": 12.60
+        },
+        {
+            "name": "+5V",
+            "include": ["+5v", "5v"],
+            "min": 4.75,
+            "max": 5.25
+        },
+        {
+            "name": "+3.3V",
+            "include": ["+3.3v", "3.3v"],
+            "min": 3.135,
+            "max": 3.465
+        }
+    ],
+
+    "excludeSensorKeywords": [
+        "battery"
+    ]
+}
+}
